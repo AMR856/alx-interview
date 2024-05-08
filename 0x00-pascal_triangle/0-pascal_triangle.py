@@ -11,8 +11,8 @@ def pascal_triangle(n):
     if n == 2:
         return [[1], [1, 1]]
     my_list_of_lists = [[1], [1, 1]]
-    for i in range (2, n + 1, 1):
-        my_list_of_lists.append([1] * i)
+    for i in range (2, n, 1):
+        my_list_of_lists.append([1] * (i + 1))
         for j in range(1, len(my_list_of_lists[i]) - 1, 1):
             my_list_of_lists[i][j] = my_list_of_lists[i - 1][j - 1] + my_list_of_lists[i - 1][j]
 
