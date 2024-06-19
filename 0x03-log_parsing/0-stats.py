@@ -18,8 +18,13 @@ def dict_printer():
     sorted_dict = {i: status_dict[i] for i in myKeys}
     for key, value in sorted_dict.items():
         print(f'{key}: {value}')
-    status_dict.clear()
-    sorted_dict.clear()
+    try:
+        input()
+        status_dict.clear()
+        sorted_dict.clear()
+    except EOFError:
+        pass
+
 
 
 try:
