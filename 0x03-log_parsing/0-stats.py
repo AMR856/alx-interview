@@ -44,5 +44,6 @@ try:
             counter = counter + 1
         else:
             continue
+    dict_printer()
 except KeyboardInterrupt:
     dict_printer()
