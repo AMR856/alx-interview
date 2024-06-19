@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""This script is doing things"""
 import sys
 import re
 
@@ -10,6 +11,7 @@ pattern = r'\"GET \/projects\/260 HTTP\/1\.1\"'
 
 
 def dict_printer():
+    """A printer to print, DUH"""
     print(f'File size: {all_file_size}')
     myKeys = list(status_dict.keys())
     myKeys.sort()
