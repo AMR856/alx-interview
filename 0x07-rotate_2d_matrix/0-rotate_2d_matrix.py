@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """Rotation in here"""
-from typing import List
 
 
-def rotate_2d_matrix(matrix: List[List]) -> None:
+def rotate_2d_matrix(matrix) -> None:
     """
         1 2 3
         4 5 6
