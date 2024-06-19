@@ -2,7 +2,7 @@
 """Rotation in here"""
 
 
-def rotate_2d_matrix(matrix) -> None:
+def rotate_2d_matrix(matrix):
     """
         1 2 3
         4 5 6
@@ -25,9 +25,10 @@ def rotate_2d_matrix(matrix) -> None:
             temp = matrix[i][j]
             matrix[i][j] = matrix[j][i]
             matrix[j][i] = temp
+    
     for i in range(len(matrix)):
         for j in range(len(matrix[i]) - 1):
-            if j != len(matrix[i]) - 1 - j:
+            if j < len(matrix[i]) / 2:
                 temp = matrix[i][j]
                 matrix[i][j] = matrix[i][len(matrix[i]) - 1 - j]
                 matrix[i][len(matrix[i]) - 1 - j] = temp
