@@ -24,7 +24,6 @@ def dict_printer():
 
 try:
     for line in sys.stdin:
-        print(line)
         if re.search(pattern, line):
             if counter == 10:
                 dict_printer()
