@@ -25,7 +25,7 @@ def rotate_2d_matrix(matrix):
             temp = matrix[i][j]
             matrix[i][j] = matrix[j][i]
             matrix[j][i] = temp
-    
+
     for i in range(len(matrix)):
         for j in range(len(matrix[i]) - 1):
             if j < len(matrix[i]) / 2:
