@@ -26,7 +26,6 @@ def dict_printer():
         pass
 
 
-
 try:
     for line in sys.stdin:
         if re.search(pattern, line):
