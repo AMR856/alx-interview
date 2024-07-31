@@ -1,19 +1,20 @@
 #!/usr/bin/python3
-"""Pascal is calling"""
+"""
+0. Pascal's Triangle
+"""
 
 
 def pascal_triangle(n):
-    """A function that does stuff"""
-    if n <= 0:
-        return []
-    if n == 1:
-        return [[1]]
-    if n == 2:
-        return [[1], [1, 1]]
-    my_list_of_lists = [[1], [1, 1]]
-    for i in range (2, n, 1):
-        my_list_of_lists.append([1] * (i + 1))
-        for j in range(1, len(my_list_of_lists[i]) - 1, 1):
-            my_list_of_lists[i][j] = my_list_of_lists[i - 1][j - 1] + my_list_of_lists[i - 1][j]
-
-    return my_list_of_lists
+    """Create a function def pascal_triangle(n): that returns a list of lists
+    of integers representing the Pascal’s triangle of n
+    """
+    res = []
+    if n > 0:
+        for i in range(1, n + 1):
+            level = []
+            C = 1
+            for j in range(1, i + 1):
+                level.append(C)
+                C = C * (i - j) // j
+            res.append(level)
+    return res

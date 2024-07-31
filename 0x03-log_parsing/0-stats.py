@@ -1,53 +1,37 @@
 #!/usr/bin/python3
-"""This script is doing things"""
+'''a script that reads stdin line by line and computes metrics'''
+
+
 import sys
-import re
 
-
-status_dict = {}
+cache = {'200': 0, '301': 0, '400': 0, '401': 0,
+         '403': 0, '404': 0, '405': 0, '500': 0}
+total_size = 0
 counter = 0
-all_file_size = 0
-pattern = r'\"GET \/projects\/260 HTTP\/1\.1\"'
-
-
-def dict_printer():
-    """A printer to print, DUH"""
-    print(f'File size: {all_file_size}')
-    myKeys = list(status_dict.keys())
-    myKeys.sort()
-    sorted_dict = {i: status_dict[i] for i in myKeys}
-    for key, value in sorted_dict.items():
-        print(f'{key}: {value}')
-    try:
-        input()
-        status_dict.clear()
-        sorted_dict.clear()
-    except EOFError:
-        pass
-
 
 try:
     for line in sys.stdin:
-        if re.search(pattern, line):
-            if counter == 10:
-                dict_printer()
-                counter = 0
-            the_stuff_after_spliting = line.split(' ')
-            status_code = the_stuff_after_spliting[7]
-            try:
-                status_code = int(status_code)
-            except ValueError:
-                status_code = None
-            if status_code:
-                if status_code not in status_dict:
-                    status_dict[status_code] = 1
-                else:
-                    status_dict[status_code] = status_dict[status_code] + 1
-            file_size = int(the_stuff_after_spliting[8])
-            all_file_size = all_file_size + file_size
-            counter = counter + 1
-        else:
-            continue
-    dict_printer()
-except KeyboardInterrupt:
-    dict_printer()
+        line_list = line.split(" ")
+        if len(line_list) > 4:
+            code = line_list[-2]
+            size = int(line_list[-1])
+            if code in cache.keys():
+                cache[code] += 1
+            total_size += size
+            counter += 1
+
+        if counter == 10:
+            counter = 0
+            print('File size: {}'.format(total_size))
+            for key, value in sorted(cache.items()):
+                if value != 0:
+                    print('{}: {}'.format(key, value))
+
+except Exception as err:
+    pass
+
+finally:
+    print('File size: {}'.format(total_size))
+    for key, value in sorted(cache.items()):
+        if value != 0:
+            print('{}: {}'.format(key, value))
